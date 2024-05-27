@@ -26,12 +26,12 @@ int registro()//criando a função registro
 	fprintf(file,",");//dado à ser acrescentado
 	fclose(file);
 	
-	printf("Digite o nome a ser cadastrado: ");
-	scanf("%s", nome);
+	printf("Digite o nome a ser cadastrado: ");//pedindo ao usuario para digitar o nome
+	scanf("%s", nome);//armazenando o nome digitado
 
-	file = fopen(arquivo, "a");
-	fprintf(file,nome);
-	fclose(file);
+	file = fopen(arquivo, "a");//abrindo o arquivo para acrescentar dados
+	fprintf(file,nome);//acrescentando os dados dentro do arquivo
+	fclose(file);//fechando o arquivo
 	
 	file = fopen(arquivo, "a");
 	fprintf(file,",");
@@ -55,29 +55,29 @@ int registro()//criando a função registro
 	fprintf(file,cargo);
 	fclose(file);
 	
-	system("pause");
+	system("pause");//dando uma pausa para a tela nao passar direto
 }
 
-int consulta()
+int consulta()//criando a função consulta
 
 {
-	setlocale(LC_ALL, "Portuguese");
+	setlocale(LC_ALL, "Portuguese");//definindo o idioma da tela
 	
-	char cpf[40];
-	char conteudo[200];
+	char cpf[40];//criando variavel para armazenar dados digitados pelo ususario
+	char conteudo[200];//criando variavel para armazenar dados coletados do arquivo
 	
-	printf("Digite o CPF a ser consultado: ");
+	printf("Digite o CPF a ser consultado: ");//pedido o usuario para digitar os dados a serem consultados
 	scanf("%s", cpf);//coletando informação do usuario
 	
 	FILE *file;
 	file = fopen(cpf,"r");//abribdo o arquivo para ler
 	
-	if(file == NULL)
+	if(file == NULL)//criando erro para alertar o usuario caso o arquivo nao exista
 	{
 		printf("Não foi possìvel abrir o arquivo, não localizado!.\n");
 	}
 	
-	while(fgets(conteudo, 200, file) != NULL)//incluindo erro para o usuario caso o cpf digitado nao exista
+	while(fgets(conteudo, 200, file) != NULL)//puxando o arquivo para exibir ao usuario caso exista
 	{
 		printf("\nEssas são as informações do usuário: ");
 		printf("%s", conteudo);
@@ -87,33 +87,45 @@ int consulta()
 	system("pause");
 }
 
-int deletar()
+int deletar()//criando a função deletar
 {
-	setlocale(LC_ALL, "Portuguese");
+	setlocale(LC_ALL, "Portuguese");//definindo o idioma
 	
-	char cpf[40];
+	char cpf[40];//criando variavel para armazenar dados digitados pelo usuario
 	
 	printf("Digite o CPF do usuário a ser deletado:");
 	scanf("%s",cpf);
 	
-	remove(cpf);
+	remove(cpf);//excluindo o arquivo
 	
 	FILE*file;
 	file = fopen(cpf,"r");
 	
-	if(file == NULL)
+	if(file == NULL)//gerando erro caso o arquivo nao exista
 	{
 		printf("O usuário não se encontra no sistema!\n");
 		system("pause");
 	}
 	
-	fclose(file);
+	fclose(file);//fechando o arquivo
 }
 
-int main()
+int main()//criando a função principal
 {
-	int opcao=0;//Definindo variáveis
-	int laco=1;
+    int opcao=0; //Definindo variáveis
+    int laco=1;//criando o laço para a tela retornar
+    char senhadigitada[]="a";//criando uma variavel para armazenar a senha
+    int comparacao;//criando uma variavel para fazer a comparação entre a senha digitada e a definida
+    
+    printf("### Cartório da EBAC ###\n\n");
+    printf("Login de administrador!\n\nDigite a sua senha: ");
+    scanf("%s", senhadigitada);
+    
+    comparacao = strcmp(senhadigitada, "admin");//comparando as senhas, a digitada e a do sistema
+    
+    if (comparacao == 0)
+	
+	{
 	
 	for (laco=1;laco=1;)
 	{
@@ -162,6 +174,11 @@ int main()
 	
 		
 }
+}
+
+else
+	printf("Senha Incorreta!");
+
 }
 	
 
